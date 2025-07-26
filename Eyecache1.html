@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EyeCache - Luxury University Streetwear</title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #111;
+    color: #eee;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+  a {
+    color: #ff3c78;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* Container */
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Navbar */
+  nav {
+    position: sticky;
+    top: 0;
+    background: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    border-bottom: 1px solid #222;
+    z-index: 1000;
+  }
+  nav .logo {
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: #ff3c78;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  nav ul li {
+    font-weight: 600;
+  }
+  nav ul li a {
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  nav ul li a:hover {
+    color: #f06;
+  }
+
+  /* Hero Section */
+  #home {
+    height: 100vh;
+    background:
+      linear-gradient(rgba(17,17,17,0.85), rgba(17,17,17,0.85)),
+      url('https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+  #home .hero-content {
+    max-width: 700px;
+  }
+  #home h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    color: #ff3c78;
+  }
+  #home p {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    color: #ddd;
+  }
+  #home .btn-primary {
+    background: #ff3c78;
+    color: #fff;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.3s ease;
+  }
+  #home .btn-primary:hover {
+    background: #e63267;
+  }
+
+  /* Section Headings */
+  section h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin: 3rem 0 1.5rem;
+    font-weight: 900;
+    color: #ff3c78;
+  }
+  section p.lead {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    font-size: 1.15rem;
+    color: #ccc;
+  }
+
+  /* Shop Section */
+  #shop .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+  .product-card {
+    background: #222;
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 15px rgb(255 60 120 / 0.4);
+    transition: transform 0.3s ease;
+  }
+  .product-card:hover {
+    transform: scale(1.05);
+  }
+  .product-card img {
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  .product-card h3 {
+    color: #ff3c78;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .product-card .color {
+    font-style: italic;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+  }
+  .product-card .price {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  .product-card button {
+    background: #ff3c78;
+    border: none;
+    padding: 0.8rem;
+    color: white;
+    font-weight: 700;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .product-card button:hover {
+    background: #e63267;
+  }
+  .sold-out {
+    background: #555;
+    color: #bbb;
+    cursor: not-allowed;
+  }
+
+  /* New Section */
+  #new .drops {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .drop {
+    margin-bottom: 2.5rem;
+  }
+  .drop h3 {
+    font-size: 1.8rem;
+    color: #ff3c78;
+    margin-bottom: 0.3rem;
+  }
+  .drop .desc {
+    font-style: italic;
+    color: #bbb;
+    margin-bottom: 0.7rem;
+  }
+  .drop .countdown {
+    font-weight: 700;
+    color: #ff3c78;
+  }
+  #new p.eco {
+    max-width: 600px;
+    margin: 2rem auto 3rem;
+    font-size: 1rem;
+    color: #ccc;
+  }
+  #new form {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  #new input[type="email"] {
+    padding: 0.8rem 1rem;
+    border-radius: 50px;
+    border: none;
+    width: 250px;
+    max-width: 90vw;
+    margin-right: 10px;
+    font-size: 1rem;
+  }
+  #new button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    border: none;
+    background: #ff3c78;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #new button:hover {
+    background: #e63267;
+  }
+
+  /* Blog Section */
+  #blog .posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto 4rem;
+  }
+  .post-card {
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgb(255 60 120 / 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .post-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  .post-card .post-content {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .post-card h4 {
+    margin-bottom: 0.5rem;
+    color: #ff3c78;
+  }
+  .post-card p {
+    flex-grow: 1;
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  .post-card a.read-more {
+    align-self: flex-start;
+    font-weight: 700;
+    color: #ff3c78;
+  }
+  .post-card a.read-more:hover {
+    text-decoration: underline;
+  }
+
+  /* Contact Section */
+  #contact {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    padding: 0 20px;
+  }
+  #contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #contact input, #contact textarea {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+  }
+  #contact textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  #contact button {
+    background: #ff3c78;
+    border: none;
+    padding: 1rem;
+    border-radius: 50px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #contact button:hover {
+    background: #e63267;
+  }
+
+  /* Footer */
+  footer {
+    background: #111;
+    text-align: center;
+    padding: 1.5rem 10%;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive Nav for Mobile */
+  @media (max-width: 768px) {
+    nav ul {
+      gap: 1rem;
+    }
+    #home h1 {
+      font-size: 2.6rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">EyeCache</div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#new">New</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <div class="hero-content">
+    <h1>EyeCache</h1>
+    <p>Luxury streetwear for the university crowd. Exclusive drops. One color, one design, one statement.</p>
+    <button class="btn-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+  </div>
+</section>
+
+<!-- Shop Section: add new products -->
+<section id="shop" class="container">
+  <h2>Shop</h2>
+  <p class="lead">Exclusive drops, limited colors, designed for NSBM students and beyond.</p>
+  <div class="products">
+    <!-- Existing products -->
+    <div class="product-card">
+      <img src="Women's Half-Placket Polo Collar 3_4 Sleeve Knit Sweater.jpeg" alt="SolarFlare Tee" />
+      <h3>SolarFlare Tee</h3>
+      <p class="color">Color: Red</p>
+      <p class="price">Rs. 3990</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="MARISA OVERSIZED HOODIE - Medium _ Black.jpeg" alt="Midnight Mirage Hoodie" />
+      <h3>Midnight Mirage Hoodie</h3>
+      <p class="color">Color: Black</p>
+      <p class="price">Rs. 6990</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="product-card sold-out">
+      <img src="Black - Moon - Dad Cap.jpeg" alt="Eclipse Cap" />
+      <h3>Eclipse Cap</h3>
+      <p class="color">Color: White</p>
+      <p class="price">Rs. 1990</p>
+      <button disabled>Sold Out</button>
+    </div>
+
+    <!-- New products -->
+    <div class="product-card">
+      <img src="download (19).jpeg" alt="Solstice Red" />
+      <h3>Solstice Red</h3>
+      <p class="color">Color: Deep Crimson</p>
+      <p class="price">Rs. 4500</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="download (20).jpeg" alt="Eclipse Black" />
+      <h3>Eclipse Black</h3>
+      <p class="color">Color: Pure Black</p>
+      <p class="price">Rs. 6990</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="ivory.jpeg" alt="Ivory Bloom" />
+      <h3>Ivory Bloom</h3>
+      <p class="color">Color: Soft Cream</p>
+      <p class="price">Rs. 4200</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="WhatsApp Image 2025-06-18 at 21.40.33_1ce8d19f.jpg" alt="Citrine Glow" />
+      <h3>Citrine Glow</h3>
+      <p class="color">Color: Light Yellow</p>
+      <p class="price">Rs. 4300</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="WhatsApp Image 2025-06-18 at 21.45.25_46520ade.jpg" alt="Ocean Dust" />
+      <h3>Ocean Dust</h3>
+      <p class="color">Color: Dusty Teal</p>
+      <p class="price">Rs. 4400</p>
+      <button>Add to Cart</button>
+    </div>
+
+    
+  </div>
+</section>
+
+<!-- New Drops Section: add upcoming drops -->
+<section id="new" class="container">
+  <h2>New</h2>
+  <p class="lead">Mark your calendars! Upcoming drops exclusive to our community.</p>
+  <div class="drops">
+    <!-- Existing Drops -->
+    <div class="drop" id="countdown-solarflare">
+      <h3>SolarFlare Tee Drop</h3>
+      <p class="desc">Red hot streetwear that ignites your style.</p>
+      <p class="countdown"><span>Loading...</span></p>
+    </div>
+    <div class="drop" id="countdown-midnightmirage">
+      <h3>Midnight Mirage Hoodie Drop</h3>
+      <p class="desc">Mysterious and sleek, perfect for late nights.</p>
+      <p class="countdown"><span>Loading...</span></p>
+    </div>
+
+    <!-- New Drops -->
+    <div class="drop" id="countdown-solstice-red">
+      <h3>Solstice Red Drop</h3>
+      <p class="desc">Confidence, boldness — perfect for Awurudu season.</p>
+      <p class="countdown"><span>Loading...</span></p>
+    </div>
+
+    <div class="drop" id="countdown-eclipse-black">
+      <h3>Eclipse Black Drop</h3>
+      <p class="desc">Timeless and sleek – power wear for evening looks.</p>
+      <p class="countdown"><span>Loading...</span></p>
+    </div>
+
+    
+
+    
+  </div>
+  <p class="eco">
+    At EyeCache, we are committed to sustainable fashion practices to reduce our environmental footprint.
+  </p>
+  <form id="newsletterForm">
+    <input type="email" placeholder="Your email for drop alerts" required />
+    <button type="submit">Notify Me</button>
+  </form>
+</section>
+
+<section id="blog" class="container">
+  <h2>Blog</h2>
+  <p class="lead">Fashion insights, styling tips, and brand stories.</p>
+  <div class="posts">
+    <div class="post-card">
+      <img src="Essential Heavyweight Oversized Hoodie - Mid Green _ S.jpeg" alt="Blog Post 1" />
+      <div class="post-content">
+        <h4>How to Style Your Streetwear</h4>
+        <p>Discover versatile ways to elevate your streetwear game with confidence and flair.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </div>
+    <div class="post-card">
+      <img src="Shen Fashion_ The Rising Star in Sustainable Luxury » Styling Outfits.jpeg" alt="Blog Post 2" />
+      <div class="post-content">
+        <h4>The Rise of Sustainable Fashion</h4>
+        <p>Why sustainable practices matter and how EyeCache incorporates eco-friendly materials.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="container">
+  <h2>Contact</h2>
+  <p class="lead">Questions, collaborations, or just want to say hi? Drop us a line!</p>
+  <form id="contactForm">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  &copy; 2025 EyeCache. Designed for NSBM students and streetwear lovers worldwide.
+</footer>
+
+<script>
+  // Countdown timers for drops
+  function startCountdown(dropId, launchDate) {
+    const countdownElement = document.getElementById(dropId).querySelector('span');
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      if (distance < 0) {
+        countdownElement.textContent = 'Launched!';
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+  }
+
+  // Set launch dates (update these dates as needed)
+  startCountdown('countdown-solarflare', new Date('2025-07-01T12:00:00').getTime());
+  startCountdown('countdown-midnightmirage', new Date('2025-08-01T12:00:00').getTime());
+
+  // Newsletter form handler
+  document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = this.querySelector('input[type="email"]').value;
+    alert(`Thanks for subscribing, ${email}! You'll be notified about upcoming drops.`);
+    this.reset();
+  });
+
+  // Contact form handler (simple alert for demonstration)
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = this.querySelector('input[name="name"]').value;
+    alert(`Thanks for reaching out, ${name}! We'll get back to you soon.`);
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
